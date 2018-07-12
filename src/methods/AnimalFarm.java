@@ -1,5 +1,7 @@
 package methods;
 
+import java.applet.AudioClip;
+
 //Copyright (c) The League of Amazing Programmers 2013-2017
 //Level 0
 
@@ -9,6 +11,7 @@ import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.JApplet;
 import javax.swing.JOptionPane;
 
 public class AnimalFarm {
@@ -21,7 +24,12 @@ AnimalFarm() {
 String animal = JOptionPane.showInputDialog("What animal do you want to hear?");
 if(animal.equalsIgnoreCase("cow")) {
 	playMoo();
-	
+}
+if(animal.equalsIgnoreCase("dog")) {
+	playWoof();
+}
+if(animal.equalsIgnoreCase("duck")) {
+	playQuack();
 }
 	/* 2. Make it so that the user can keep entering new animals. */
 }
@@ -49,9 +57,8 @@ String llamaFile = "llama.wav";
 
 public void playNoise(String soundFile) {
 	try {
-		 Clip clip = AudioSystem.getClip();
-		 clip.open(AudioSystem.getAudioInputStream(getClass().getResource(soundFile)));
-		 clip.start();
+		 AudioClip clip = JApplet.newAudioClip(getClass().getResource(soundFile));
+		 clip.play();
 		 Thread.sleep(3400);
 	} catch (Exception ex) {
   	ex.printStackTrace();
